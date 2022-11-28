@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "gin-tasting": {
+      "hosting": {
+        "gin-tasting": [
+          "gin-tasting"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "gin-tasting"
+  }
+}

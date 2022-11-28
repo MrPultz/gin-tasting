@@ -94,6 +94,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "gin-tasting:build:production",
+            "firebaseProject": "gin-tasting",
+            "firebaseHostingSite": "gin-tasting"
+          }
         }
       }
     }
