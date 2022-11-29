@@ -3,7 +3,7 @@
   style="min-height: 700px"
 >
   <div
-    class="w-3/12 h-64 bg-gradient-to-br from-yellow-400 p-2 to-yellow-700 rounded-xl"
+    class="w-3/12 h-80 bg-gradient-to-br from-yellow-400 p-2 to-yellow-700 rounded-xl"
   >
     <div
       class="w-12/12 h-full bg-gray-900 rounded-xl items-center flex flex-col"
@@ -20,7 +20,7 @@
           name="password"
           formControlName="password"
         />
-        <button type="submit" [disabled]="!loginForm.valid" class="w-5/12 text-gray-100 bg-gradient-to-b from-yellow-400 p-2 to-yellow-700 rounded-lg hover:bg-gradient-to-t hover:from-slate-800 hover:to-gray-500">Login</button>
+        <button type="submit" [disabled]="!loginForm.valid" class="w-5/12 text-gray-100 mt-4 bg-gradient-to-b from-yellow-400 p-2 to-yellow-700 rounded-lg hover:bg-gradient-to-t hover:from-slate-800 hover:to-gray-500">Login</button>
         <div class="flex flex-col mt-2 justify-between">
             <a href="#" class="w-auto text-sm text-blue-700 mt-2">Register?</a>
             <p>{{ loginError }}</p>
