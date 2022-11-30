@@ -18,6 +18,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { VoteComponent } from './pages/vote/vote.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     LoginComponent,
     GinRenderComponent,
     ListComponent,
-    Top10Component
+    Top10Component,
+    VoteComponent
   ],
   imports: [
     BrowserModule,
