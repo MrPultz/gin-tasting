@@ -14,14 +14,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Mermaid Gin</td>
-                <td>Isle of Wight Distillery</td>
-                <td>Plain</td>
-                <td>GB</td>
-                <td>42</td>
-                <td>7.4</td>
-                <td>11</td>
+            <tr *ngFor="let gin of gins | async">
+                <td>{{gin.name}}</td>
+                <td>{{gin.brand}}</td>
+                <td>{{gin.variant}}</td>
+                <td>{{gin.country}}</td>
+                <td>{{gin.vol}}</td>
+                <td>{{gin.avgPoints}}</td>
+                <td>{{gin.votes}}</td>
                 <td>Button</td>
             </tr>
         </tbody>

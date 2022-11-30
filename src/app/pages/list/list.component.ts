@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Gin } from 'src/app/models/Gin';
+import { DbService } from 'src/app/services/db.service';
 
 @Component({
   selector: 'app-list',
@@ -7,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  gins: Observable<Gin[]>;
+
+  constructor(private dbService: DbService) {
+    this.gins = dbService.getGins();
+  }
 
   ngOnInit(): void {
   }
