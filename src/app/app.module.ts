@@ -19,6 +19,11 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { VoteComponent } from './pages/vote/vote.component';
+import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
+import { GinComponent } from './pages/admin/gin/gin.component';
+import { EventComponent } from './pages/admin/event/event.component';
+import { NavbarComponent } from './components/admin/navbar/navbar.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,12 @@ import { VoteComponent } from './pages/vote/vote.component';
     GinRenderComponent,
     ListComponent,
     Top10Component,
-    VoteComponent
+    VoteComponent,
+    DashboardComponent,
+    GinComponent,
+    EventComponent,
+    NavbarComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
