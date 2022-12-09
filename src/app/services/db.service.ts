@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { collection, collectionData, Firestore, limit, orderBy, query, QueryDocumentSnapshot } from '@angular/fire/firestore';
+import { collection, collectionData, doc, docData, Firestore, limit, orderBy, query, QueryDocumentSnapshot } from '@angular/fire/firestore';
 import { traceUntilFirst } from '@angular/fire/performance';
 import { DocumentData } from '@firebase/firestore';
 import { EMPTY, Observable } from 'rxjs';
 import { Gin } from '../models/Gin';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -44,5 +45,19 @@ export class DbService {
       return data;
     }
     return EMPTY
+  }
+
+  public getUser(userId: string): Observable<User> {
+    const userConverter = {
+      toFirestore(user: User): DocumentData {
+        return {name: user.name, email: user.email, isAdmin: user.isAdmin}
+      },
+      fromFirestore(snapshot: QueryDocumentSnapshot<User>, options: any): User {
+        const data = snapshot.data(options)!;
+        return data 
+      }
+    }
+    const docRef = doc(this.firestore, `users/${userId}`).withConverter(userConverter);
+    return docData(docRef);
   }
 }

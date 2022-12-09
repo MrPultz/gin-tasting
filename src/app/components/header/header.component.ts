@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '@angular/fire/auth';
-import { EMPTY, Observable } from 'rxjs';
+import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,12 +9,14 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  user: Observable<User | null> = EMPTY;
+  user: User | undefined = undefined;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.user = this.authService.user$;
+    this.authService.user$.subscribe(user => {
+      this.user = user;
+    });
   }
 
   logout(): void {

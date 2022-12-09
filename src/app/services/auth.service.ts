@@ -1,18 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Auth, authState, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
+import { Auth, authState, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { EMPTY, Observable } from 'rxjs';
+import { EMPTY, Observable, switchMap } from 'rxjs';
+import { User } from '../models/user';
+import { DbService } from './db.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  readonly user$: Observable<User | null>  = EMPTY;
+  readonly user$: Observable<User>  = EMPTY;
 
-  constructor(private auth: Auth, private router: Router) {
+  constructor(private auth: Auth, private db: DbService, private router: Router) {
     if(auth) {
-      this.user$ = authState(this.auth);
+      this.user$ = authState(this.auth).pipe(switchMap(user => {
+        if(user) 
+          return db.getUser(user?.uid);
+        return EMPTY;
+      }));
     }
   }
 
