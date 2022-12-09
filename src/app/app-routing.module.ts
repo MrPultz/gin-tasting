@@ -6,14 +6,18 @@ import { ListComponent } from './pages/list/list.component';
 import { LoginComponent } from './pages/login/login.component';
 import { Top10Component } from './pages/top10/top10.component';
 import { VoteComponent } from './pages/vote/vote.component';
+import { AuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+
+const redirectLoggedInToHome = () => redirectLoggedInTo(['']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
-  { path: '', component: FrontpageComponent},
-  { path: 'top10', component: Top10Component},
-  { path: 'list', component: ListComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'vote', component: VoteComponent},
-  { path: 'admin/dashboard', component:DashboardComponent }
+  { path: '', component: FrontpageComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogin}},
+  { path: 'top10', component: Top10Component, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogin}},
+  { path: 'list', component: ListComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogin}},
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectLoggedInToHome}},
+  { path: 'vote', component: VoteComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogin}},
+  { path: 'admin/dashboard', component:DashboardComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogin}}
 ];
 
 @NgModule({
