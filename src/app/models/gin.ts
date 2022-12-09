@@ -4,7 +4,7 @@ export interface Gin {
     avgPoints: number,
     country: string,
     valueLiterPoint: number,
-    valuePerLister: number,
+    valuePerLiter: number,
     variant: string,
     vol: number,
     votes: number
