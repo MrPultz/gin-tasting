@@ -1,5 +1,3 @@
-
-
 <div class="w-full flex flex-wrap justify-center items-center sticky top-0 h-24 bg-black border-b-2 border-yellow-600">
     <div class="w-9/12 flex relative justify-center items-center">
         <div class="w-auto absolute left-8">
@@ -7,10 +5,16 @@
         </div>
         <div class="absolute right-8">
             <ul class="flex flex-wrap space-x-7 text-white text-lg font-bold">
-                <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/top10" routerLinkActive="active" ariaCurrentWhenActive="page">Top 10</a></li>
-                <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/vote" routerLinkActive="active" ariaCurrentWhenActive="page">Vote</a></li>
-                <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/list" routerLinkActive="active" ariaCurrentWhenActive="page">List</a></li>
-                <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a></li>
+                <div *ngIf="user | async; then loggedIn; else loggedOut"></div>
+                <ng-template #loggedIn>
+                    <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/top10" routerLinkActive="active" ariaCurrentWhenActive="page">Top 10</a></li>
+                    <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/vote" routerLinkActive="active" ariaCurrentWhenActive="page">Vote</a></li>
+                    <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/list" routerLinkActive="active" ariaCurrentWhenActive="page">List</a></li>
+                    <li class="cursor-pointer hover:text-yellow-600"><a (click)="logout()">Logout</a></li>
+                </ng-template>
+                <ng-template #loggedOut>
+                    <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a></li>
+                </ng-template>
             </ul>
         </div>
     </div>

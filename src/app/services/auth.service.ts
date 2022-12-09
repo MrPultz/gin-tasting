@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, authState, signInWithEmailAndPassword, User } from '@angular/fire/auth';
+import { Auth, authState, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { EMPTY, Observable } from 'rxjs';
 
@@ -19,6 +19,12 @@ export class AuthService {
   async login(email: string, password: string): Promise<void> {
     return await signInWithEmailAndPassword(this.auth, email, password).then(() => {
       this.router.navigate(['']);
+    });
+  }
+
+  async logout(): Promise<void> {
+    return await signOut(this.auth).then(() => {
+      this.router.navigate(['login']);
     });
   }
 }

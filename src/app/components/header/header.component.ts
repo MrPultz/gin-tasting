@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { User } from '@angular/fire/auth';
+import { EMPTY, Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +10,15 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  user: Observable<User | null> = EMPTY;
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.user = this.authService.user$;
   }
 
+  logout(): void {
+    this.authService.logout();
+  }
 }
