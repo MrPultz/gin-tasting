@@ -9,7 +9,7 @@
                     <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/top10" routerLinkActive="active" ariaCurrentWhenActive="page">Top 10</a></li>
                     <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/vote" routerLinkActive="active" ariaCurrentWhenActive="page">Vote</a></li>
                     <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/list" routerLinkActive="active" ariaCurrentWhenActive="page">List</a></li>
-                    <li *ngIf="user.isAdmin" class="cursor-pointer hover:text-yellow-600"><a routerLink="/admin/dashboard" routerLinkActive="active" ariaCurrentWhenActive="page">Dashboard</a></li>
+                    <li *ngIf="user.isAdmin" class="cursor-pointer hover:text-yellow-600"><a routerLink="/admin" routerLinkActive="active" ariaCurrentWhenActive="page">Dashboard</a></li>
                     <li class="cursor-pointer hover:text-yellow-600"><a (click)="logout()">Logout</a></li>
                 </div>
                 <ng-template #loggedOut>
@@ -19,3 +19,5 @@
         </div>
     </div>
 </div>
+<router-outlet></router-outlet>
+<footer></footer>
