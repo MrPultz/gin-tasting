@@ -1,13 +1,15 @@
 <div class="flex">
     <div class="fixed top-0 left-0 h-screen w-16 flex flex-col bg-primary text-secondary shadow-lg">
-        <div class="sidebar-icon group">
+        <a routerLink="admin/dashboard" routerLinkActive="active" ariaCurrentWhenActive="page">
+            <div class="sidebar-icon group">
             <span class="material-icons">
                 dashboard
             </span>
             <span class="sidebar-tooltip group-hover:scale-100">
                 Dashboard
             </span>
-        </div>
+        </div></a>
+        <a routerLink="admin/gin" routerLinkActive="active" ariaCurrentWhenActive="page">
         <div class="sidebar-icon group">
             <span class="material-icons">
                 add
@@ -15,7 +17,8 @@
             <span class="sidebar-tooltip group-hover:scale-100">
                 Add New Gin
             </span>
-        </div>
+        </div></a>
+        <a routerLink="admin/event" routerLinkActive="active" ariaCurrentWhenActive="page">
         <div class="sidebar-icon group">
             <span class="material-icons">
                 event
@@ -23,7 +26,7 @@
             <span class="sidebar-tooltip group-hover:scale-100">
                 Create An Event
             </span>
-        </div>
+        </div></a>
         <div class="sidebar-icon group">
             <span class="material-icons">
                 view_list

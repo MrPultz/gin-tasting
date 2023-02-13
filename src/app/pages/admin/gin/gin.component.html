@@ -1,1 +1,17 @@
-<p>gin works!</p>
+<div class="flex w-auto ml-16 h-screen bg-gray-700 items-center flex-col">
+    <h2 class="text-white">Add a new Gin</h2>
+    <div class="w-2/12 flex flex-col items-center">
+        <form [formGroup]="addGinForm" (ngSubmit)="submit()" class="w-full flex flex-col justify-center mt-6">
+            <label>Name</label>
+            <input type="text" id="ginName" name="ginName" formControlName="ginName" class="" />
+            <label>Brand</label>
+            <input type="text" id="ginBrandName" name="ginBrand" formControlName="ginBrand" class="" />
+            <label>Variant</label>
+            <!-- Make this either a dropdown. -->
+            <input type="text" id="ginVariant" name="ginVariant" formControlName="ginVariant" class="" />
+            <label>Country</label>
+            <!-- Make this either a dropdown and convert to 2 chars. -->
+            <input type="text" id="ginCountry" name="ginCountry" formControlName="ginCountry" class="" /> 
+        </form>
+    </div>
+</div>
