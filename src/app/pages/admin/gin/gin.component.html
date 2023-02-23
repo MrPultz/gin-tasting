@@ -1,17 +1,37 @@
 <div class="flex w-auto ml-16 h-screen bg-gray-700 items-center flex-col">
-    <h2 class="text-white">Add a new Gin</h2>
+    <h2 class="text-yellow-500 mt-5 font-Roboto text-7xl">Add a new Gin</h2>
     <div class="w-2/12 flex flex-col items-center">
         <form [formGroup]="addGinForm" (ngSubmit)="submit()" class="w-full flex flex-col justify-center mt-6">
-            <label>Name</label>
-            <input type="text" id="ginName" name="ginName" formControlName="ginName" class="" />
-            <label>Brand</label>
-            <input type="text" id="ginBrandName" name="ginBrand" formControlName="ginBrand" class="" />
-            <label>Variant</label>
-            <!-- Make this either a dropdown. -->
-            <input type="text" id="ginVariant" name="ginVariant" formControlName="ginVariant" class="" />
-            <label>Country</label>
-            <!-- Make this either a dropdown and convert to 2 chars. -->
-            <input type="text" id="ginCountry" name="ginCountry" formControlName="ginCountry" class="" /> 
+            <div class="form__group field">
+                <input type="input" class="form__field" placeholder="Name" name="name" id="name" required />
+                <label for="name" class="form__label">Name</label>
+            </div>
+            <div class="form__group field">
+                <input type="input" class="form__field" placeholder="Brand" name="brand" id="brand" required />
+                <label for="brand" class="form__label">Brand</label>
+            </div>
+            <div class="form__group field">
+                <input type="input" class="form__field" placeholder="Variant" name="variant" id="variant" required />
+                <label for="variant" class="form__label">Variant</label>
+            </div>
+            <div class="form__group field">
+                <input type="input" class="form__field" placeholder="Country" name="country" id="country" required />
+                <label for="country" class="form__label">Country</label>
+            </div>
+            <div class="form__group field">
+                <input type="input" class="form__field" placeholder="Vol" name="vol" id="vol" required />
+                <label for="vol" class="form__label">Vol %</label>
+            </div>
+            <div class="form__group field">
+                <input type="input" class="form__field" placeholder="Price" name="price" id="price" required />
+                <label for="price" class="form__label">Price</label>
+            </div>
+            <div class="form__group field">
+                <input type="file" class="form__field" style="border-bottom: 0px; font-size: 1rem; margin-top: 15px;" placeholder="Upload" name="upload" id="myFile" name="filename" accept="image/png, image/gif, image/jpeg">
+                <label for="price" class="form__label" style="font-size:1.3rem;">Upload image</label>
+
+            </div>
+            <input class="border-gray-500 border-2 h-12 font-Roboto text-gray-500 text-lg mt-8 cursor-pointer buttonStyle" type="submit">
         </form>
     </div>
-</div>
+</div> 
