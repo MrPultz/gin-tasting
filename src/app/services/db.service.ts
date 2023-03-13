@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collection, collectionData, doc, docData, Firestore, limit, orderBy, query, QueryDocumentSnapshot } from '@angular/fire/firestore';
+import { addDoc, collection, collectionData, doc, docData, Firestore, limit, orderBy, query, QueryDocumentSnapshot } from '@angular/fire/firestore';
 import { traceUntilFirst } from '@angular/fire/performance';
 import { DocumentData } from '@firebase/firestore';
 import { EMPTY, Observable } from 'rxjs';
@@ -14,20 +14,20 @@ export class DbService {
   private readonly ginPath = "/Gins";
   private readonly ginConverter = {
     toFirestore(gin: Gin): DocumentData {
-      return {name: gin.name, brand: gin.brand, avgPoints: gin.avgPoints, country: gin.country, valueLiterPoint: gin.valueLiterPoint, valuePerLiter: gin.valuePerLiter, variant: gin.variant, vol: gin.vol, votes: gin.votes}
+      return {name: gin.name, brand: gin.brand, avgPoints: gin.avgPoints, country: gin.country, valueLiterPoint: gin.valueLiterPoint, valuePerLiter: gin.valuePerLiter, variant: gin.variant, vol: gin.vol, votes: gin.votes, img: gin.img}
     },
     fromFirestore(snapshot: QueryDocumentSnapshot<Gin>, options: any): Gin {
       const data = snapshot.data(options)!;
       return data 
     }
   }
+  private readonly colRef = collection(this.firestore, `${this.ginPath}`).withConverter(this.ginConverter);
 
   constructor(private firestore: Firestore) { }
 
   public getGins(): Observable<Gin[]> {
-    const colRef = collection(this.firestore, `${this.ginPath}`).withConverter(this.ginConverter);
-    if(colRef) {
-      const data = collectionData<Gin>(colRef).pipe(
+    if(this.colRef) {
+      const data = collectionData<Gin>(this.colRef).pipe(
         traceUntilFirst('firestore')
       );
       return data;
@@ -59,5 +59,10 @@ export class DbService {
     }
     const docRef = doc(this.firestore, `users/${userId}`).withConverter(userConverter);
     return docData(docRef);
+  }
+
+  public addGin(gin: Gin): void {
+    if(this.colRef)
+      addDoc(this.colRef, gin);
   }
 }

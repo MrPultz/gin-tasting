@@ -1,6 +1,6 @@
 <div *ngIf="gin" class="flex w-12/12 bg-gradient-to-br from-yellow-400 to-yellow-800 p-1 rounded-lg justify-center items-center mb-5">
     <div class="flex w-12/12 bg-black rounded-lg h-64 justify-center items-center">
-        <div class="w-1/2 flex rounded-lg justify-center items-center"><img src="/assets/images/MermaidGin.png" alt="ginNameHere" class="h-52" /></div>
+        <div class="w-1/2 flex rounded-lg justify-center items-center"><img [src]="gin.img" [alt]="gin.name" class="h-52" /></div>
         <div class="h-5/6 w-96 border-l-2 border-yellow-600 border-dashed flex flex-auto pl-5  items-left flex-col text-left">
             <p><b>Name: </b> {{gin.name}}</p>
             <p><b>Kr/L:</b> {{gin.valuePerLiter}}</p>
