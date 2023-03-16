@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { getDownloadURL } from '@firebase/storage';
 import { Gin } from 'src/app/models/Gin';
-import { DbService } from 'src/app/services/db.service';
+import { GinService } from 'src/app/services/gin.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -34,7 +34,7 @@ export class GinComponent implements OnInit {
   });
   file: File | undefined;
 
-  constructor(private dbService: DbService, private storageService: StorageService) { }
+  constructor(private ginService: GinService, private storageService: StorageService) { }
 
   ngOnInit(): void {
   }
@@ -69,7 +69,7 @@ export class GinComponent implements OnInit {
           img: url
         };
         this.addGinForm.reset();
-        this.dbService.addGin(gin);
+        this.ginService.addGin(gin);
       });
     }).catch(err => {
       // Error while uploading img
