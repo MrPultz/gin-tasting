@@ -3,7 +3,7 @@ import { collection, collectionData, doc, docData, Firestore, limit, orderBy, qu
 import { traceUntilFirst } from '@angular/fire/performance';
 import { DocumentData } from '@firebase/firestore';
 import { EMPTY, Observable } from 'rxjs';
-import { Gin } from '../models/Gin';
+import { Gin } from '../models/gin';
 import { User } from '../models/user';
 
 @Injectable({

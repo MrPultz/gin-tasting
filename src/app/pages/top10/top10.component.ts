@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EMPTY, Observable } from 'rxjs';
-import { Gin } from 'src/app/models/Gin';
+import { Gin } from 'src/app/models/gin';
 import { DbService } from 'src/app/services/db.service';
 
 @Component({

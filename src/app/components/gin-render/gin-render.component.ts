@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Gin } from 'src/app/models/Gin';
+import { Gin } from 'src/app/models/gin';
 
 @Component({
   selector: 'gin-render',
