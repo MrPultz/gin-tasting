@@ -7,17 +7,27 @@ import { LoginComponent } from './pages/login/login.component';
 import { Top10Component } from './pages/top10/top10.component';
 import { VoteComponent } from './pages/vote/vote.component';
 import { AuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { NavbarComponent } from './components/admin/navbar/navbar.component';
+import { HeaderComponent } from './components/header/header.component';
+import { GinComponent } from './pages/admin/gin/gin.component';
+import { EventComponent } from './pages/admin/event/event.component';
 
 const redirectLoggedInToHome = () => redirectLoggedInTo(['']);
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
-  { path: '', component: FrontpageComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogin}},
-  { path: 'top10', component: Top10Component, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogin}},
-  { path: 'list', component: ListComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogin}},
+  { path: '', component: HeaderComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogin}, children: [
+    { path: '', component: FrontpageComponent},
+    { path: 'top10', component: Top10Component},
+    { path: 'list', component: ListComponent},
+    { path: 'vote', component: VoteComponent},
+  ]},
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectLoggedInToHome}},
-  { path: 'vote', component: VoteComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogin}},
-  { path: 'admin/dashboard', component:DashboardComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogin}}
+  { path: 'admin', component:NavbarComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogin}, children: [
+    { path: '', component: DashboardComponent},
+    { path: 'gin', component: GinComponent},
+    { path: 'event', component: EventComponent}
+  ]}
 ];
 
 @NgModule({

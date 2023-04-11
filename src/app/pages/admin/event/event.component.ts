@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-event',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventComponent implements OnInit {
 
+  createEventForm = new FormGroup({
+    ginName: new FormControl('', [
+
+    ])
+  });
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  submit():void {
+    console.log("You pressed submit button")
   }
 
 }
