@@ -7,8 +7,8 @@
             <ul class="text-white text-lg font-bold">
                 <div *ngIf="user; else  loggedOut" class="flex flex-wrap space-x-7">
                     <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/top10" routerLinkActive="active" ariaCurrentWhenActive="page">Top 10</a></li>
-                    <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/vote" routerLinkActive="active" ariaCurrentWhenActive="page">Vote</a></li>
-                    <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/list" routerLinkActive="active" ariaCurrentWhenActive="page">List</a></li>
+                    <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/list" routerLinkActive="active" ariaCurrentWhenActive="page">Gins</a></li>
+                    <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/vote" routerLinkActive="active" ariaCurrentWhenActive="page">Join Event</a></li>
                     <li *ngIf="user.isAdmin" class="cursor-pointer hover:text-yellow-600"><a routerLink="/admin" routerLinkActive="active" ariaCurrentWhenActive="page">Dashboard</a></li>
                     <li class="cursor-pointer hover:text-yellow-600"><a (click)="logout()">Logout</a></li>
                 </div>

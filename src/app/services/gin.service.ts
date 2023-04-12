@@ -31,6 +31,10 @@ export class GinService {
     return this.dbService.getOrderByWithLimit(10, "avgPoints", "desc", this.ginPath, this.ginConverter);
   }
 
+  public getTop3Gins(): Observable<Gin[]> {
+    return this.dbService.getOrderByWithLimit(3, 'avgPoints', 'desc', this.ginPath, this.ginConverter);
+  }
+
   public addGin(gin: Gin): void {
     this.dbService.add(gin, this.ginPath, this.ginConverter);
   }
