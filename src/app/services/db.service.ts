@@ -27,7 +27,7 @@ export class DbService {
       return EMPTY;
     }
 
-    const data = collectionData<T>(colRef).pipe(
+    const data = collectionData<T>(colRef,{idField: "id"}).pipe(
       traceUntilFirst('firestore')
     );
     return data;

@@ -1,3 +1,11 @@
 <div class="flex w-auto ml-16 h-screen bg-gray-700 justify-center">
     <h2 class="text-white">Dashboard</h2>
+
+    <div style="color: white">
+        <h1>Events</h1> 
+        <div *ngFor="let event of events$ | async" class="event" [routerLink]="['event', event.id]">
+            <h3>{{event.name}}</h3>
+            <p>Number of Gins{{event.gins.length}}</p>
+        </div>       
+    </div>
 </div>

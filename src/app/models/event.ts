@@ -1,6 +1,9 @@
+import { Gin } from "./Gin";
+
 export interface tastingEvent {
     name: string,
-    gins: string[],
+    gins: Gin[],
     date: Date,
-    code: number
+    code: number,
+    id?: string
 }

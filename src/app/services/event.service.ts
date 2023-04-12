@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DocumentData, QueryDocumentSnapshot } from '@angular/fire/firestore';
+import { DocumentData, QueryDocumentSnapshot, SnapshotOptions } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { tastingEvent } from '../models/event';
 import { DbService } from './db.service';
@@ -12,10 +12,10 @@ export class EventService {
   private readonly eventPath = "/Events";
   private readonly eventConverter = {
     toFirestore(event: tastingEvent): DocumentData {
-      return {name: event.name, gins: event.gins, date: event.date}
+      return {name: event.name, gins: event.gins, date: event.date, code: event.code}
     },
-    fromFirestore(snapshot: QueryDocumentSnapshot<tastingEvent>, options: any): tastingEvent {
-      const data = snapshot.data(options)!;
+    fromFirestore(snapshot: QueryDocumentSnapshot<tastingEvent>, options?: SnapshotOptions): tastingEvent {
+      const data = snapshot.data(options);
       return data 
     }
   }
@@ -28,5 +28,9 @@ export class EventService {
 
   getEvents(): Observable<tastingEvent[]> {
     return this.dbService.getAll(this.eventPath, this.eventConverter);
+  }
+
+  getEvent(id: string): Observable<tastingEvent> {
+    return this.dbService.getDoc(`${this.eventPath}/${id}`, this.eventConverter);
   }
 }

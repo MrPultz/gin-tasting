@@ -21,7 +21,7 @@ export class EventComponent implements OnInit {
   });
 
   gins$: Observable<Gin[]>;
-  selectedGins: string[];
+  selectedGins: Gin[];
 
   constructor(private eventService: EventService, private ginService: GinService) {
     this.gins$ = this.ginService.getGins();
@@ -34,6 +34,12 @@ export class EventComponent implements OnInit {
   submit():void {
     if(!this.createEventForm.value.name) {
       return;
+    }
+    for(let gin of this.selectedGins) {
+      gin.avgPoints = 0;
+      gin.valueLiterPoint = 0;
+      gin.valuePerLiter = 0;
+      gin.votes = 0;
     }
     const event: tastingEvent = {
       name: this.createEventForm.value.name,
@@ -69,7 +75,7 @@ export class EventComponent implements OnInit {
     if(gin == null) {
       return;
     }
-    this.selectedGins.push(gin.name);
+    this.selectedGins.push(gin);
   }
 
   private removeGinFromList(gin: Gin): void {
@@ -77,7 +83,7 @@ export class EventComponent implements OnInit {
       return;
     }
 
-    const index = this.selectedGins.findIndex(_gin => _gin === gin.name);
+    const index = this.selectedGins.findIndex(_gin => _gin === gin);
     if(index < 0) {
       return;
     }

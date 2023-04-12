@@ -11,6 +11,7 @@ import { NavbarComponent } from './components/admin/navbar/navbar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { GinComponent } from './pages/admin/gin/gin.component';
 import { EventComponent } from './pages/admin/event/event.component';
+import { ShowEventComponent } from './pages/admin/show-event/show-event.component';
 
 const redirectLoggedInToHome = () => redirectLoggedInTo(['']);
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'admin', component:NavbarComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogin}, children: [
     { path: '', component: DashboardComponent},
     { path: 'gin', component: GinComponent},
-    { path: 'event', component: EventComponent}
+    { path: 'event', component: EventComponent},
+    { path: 'event/:id', component: ShowEventComponent}
   ]}
 ];
 

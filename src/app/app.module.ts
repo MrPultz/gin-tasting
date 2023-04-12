@@ -24,6 +24,7 @@ import { GinComponent } from './pages/admin/gin/gin.component';
 import { EventComponent } from './pages/admin/event/event.component';
 import { NavbarComponent } from './components/admin/navbar/navbar.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ShowEventComponent } from './pages/admin/show-event/show-event.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { RegisterComponent } from './pages/register/register.component';
     GinComponent,
     EventComponent,
     NavbarComponent,
-    RegisterComponent
+    RegisterComponent,
+    ShowEventComponent
   ],
   imports: [
     BrowserModule,
