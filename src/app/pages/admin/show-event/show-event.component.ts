@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { idToken } from '@angular/fire/auth';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { Gin } from 'src/app/models/Gin';
@@ -16,6 +17,7 @@ export class ShowEventComponent implements OnInit {
 
   event: tastingEvent | undefined;
   ratings: eventRating[] = [];
+  activeItemIndex: number = 0;
 
   constructor(private route: ActivatedRoute, private eventService: EventService) { }
 
@@ -57,5 +59,12 @@ export class ShowEventComponent implements OnInit {
       gin.valueLiterPoint = gin.valuePerLiter / gin.avgPoints;
       this.ratings.push(rating);
     }
+  }
+  previousItem() {
+    this.activeItemIndex = this.activeItemIndex === 0 ? this.eventService.getEvents.length - 1 : this.activeItemIndex - 1;
+  }
+  
+  nextItem() {
+    this.activeItemIndex = this.activeItemIndex === this.eventService.getEvents.length - 1 ? 0 : this.activeItemIndex + 1;
   }
 }

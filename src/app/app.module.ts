@@ -27,6 +27,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ShowEventComponent } from './pages/admin/show-event/show-event.component';
 import { GinEventCardComponent } from './components/gin-event-card/gin-event-card.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +57,7 @@ import { GinEventCardComponent } from './components/gin-event-card/gin-event-car
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     providePerformance(() => getPerformance()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
   ],
   providers: [
     ScreenTrackingService,UserTrackingService
