@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DocumentData, QueryDocumentSnapshot, SnapshotOptions } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { tastingEvent } from '../models/event';
+import { eventRating, tastingEvent } from '../models/event';
 import { DbService } from './db.service';
 
 @Injectable({
@@ -20,6 +20,16 @@ export class EventService {
     }
   }
 
+  private readonly ratingConverter = {
+    toFirestore(rating: eventRating): DocumentData {
+      return {name: rating.name, rating: rating.rating}
+    },
+    fromFirestore(snapshot: QueryDocumentSnapshot<eventRating>, options?: SnapshotOptions): eventRating {
+      const data = snapshot.data(options);
+      return data 
+    }
+  }
+
   constructor(private dbService: DbService) { }
 
   createEvent(event: tastingEvent): void {
@@ -33,4 +43,16 @@ export class EventService {
   getEvent(id: string): Observable<tastingEvent> {
     return this.dbService.getDoc(`${this.eventPath}/${id}`, this.eventConverter);
   }
+
+  getEventByCode(code: string): Observable<tastingEvent[]> {
+    return this.dbService.getByField(code, this.eventPath, this.eventConverter);
+  }
+
+  giveGinRating(eventID: string, rating: eventRating): void {
+    this.dbService.add(rating, `${this.eventPath}/${eventID}/Ratings/`, this.ratingConverter);
+  }
+
+  getRatings(eventID: string): Observable<eventRating[]> {
+    return this.dbService.getAll(`${this.eventPath}/${eventID}/Ratings/`, this.ratingConverter);
+  } 
 }

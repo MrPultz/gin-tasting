@@ -7,6 +7,7 @@ export interface Gin {
     valuePerLiter: number,
     variant: string,
     vol: number,
+    cl: number,
     votes: number,
     price: number,
     img: string,

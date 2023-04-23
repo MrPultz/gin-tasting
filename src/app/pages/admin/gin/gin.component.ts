@@ -31,6 +31,9 @@ export class GinComponent implements OnInit {
     price: new FormControl(0, [
       Validators.required,
     ]),
+    cl: new FormControl(0, [
+      Validators.required,
+    ]),
   });
   file: File | undefined;
 
@@ -52,7 +55,7 @@ export class GinComponent implements OnInit {
       getDownloadURL(storageRef).then(url => {
         if (!this.addGinForm.value.ginName || !this.addGinForm.value.brand ||
           !this.addGinForm.value.variant || !this.addGinForm.value.country ||
-          !this.addGinForm.value.price || !this.addGinForm.value.vol || !this.addGinForm.value.price) {
+          !this.addGinForm.value.price || !this.addGinForm.value.vol || !this.addGinForm.value.price || !this.addGinForm.value.cl) {
           return;
         }
         const gin: Gin = {
@@ -66,7 +69,8 @@ export class GinComponent implements OnInit {
           vol: this.addGinForm.value.vol,
           votes: 0,
           price: this.addGinForm.value.price,
-          img: url
+          img: url,
+          cl: this.addGinForm.value.cl
         };
         this.addGinForm.reset();
         this.ginService.addGin(gin);
