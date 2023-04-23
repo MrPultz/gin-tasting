@@ -33,4 +33,5 @@ export class EventService {
   getEvent(id: string): Observable<tastingEvent> {
     return this.dbService.getDoc(`${this.eventPath}/${id}`, this.eventConverter);
   }
+
 }

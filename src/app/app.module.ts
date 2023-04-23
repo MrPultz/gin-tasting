@@ -26,6 +26,7 @@ import { NavbarComponent } from './components/admin/navbar/navbar.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ShowEventComponent } from './pages/admin/show-event/show-event.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { ShowEventComponent } from './pages/admin/show-event/show-event.componen
     EventComponent,
     NavbarComponent,
     RegisterComponent,
-    ShowEventComponent
+    ShowEventComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,7 @@ import { ShowEventComponent } from './pages/admin/show-event/show-event.componen
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     providePerformance(() => getPerformance()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
   ],
   providers: [
     ScreenTrackingService,UserTrackingService
