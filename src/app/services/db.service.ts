@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, collectionData, doc, docData, Firestore, FirestoreDataConverter, limit, orderBy, query, QueryDocumentSnapshot } from '@angular/fire/firestore';
+import { addDoc, collection, collectionData, doc, docData, Firestore, FirestoreDataConverter, limit, orderBy, query, QueryDocumentSnapshot, where } from '@angular/fire/firestore';
 import { traceUntilFirst } from '@angular/fire/performance';
 import { CollectionReference, DocumentData, OrderByDirection, SnapshotOptions } from '@firebase/firestore';
 import { EMPTY, Observable } from 'rxjs';
@@ -51,6 +51,20 @@ export class DbService {
     const data = collectionData<T>(q).pipe(
       traceUntilFirst('firestore')
     );
+    return data;
+  }
+
+  getByField<T>(code: string, path: string, converter: FirestoreDataConverter<T>): Observable<T[]> {
+    const colRef = collection(this.firestore, path).withConverter(converter);
+    if(colRef == null) {
+      return EMPTY;
+    }
+
+    const q = query(colRef, where('code', '==', code));
+    const data = collectionData<T>(q, {idField: "id"}).pipe(
+      traceUntilFirst('firestore')
+    );
+
     return data;
   }
 

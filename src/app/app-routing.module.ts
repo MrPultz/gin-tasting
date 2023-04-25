@@ -17,7 +17,7 @@ const redirectLoggedInToHome = () => redirectLoggedInTo(['']);
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
-  { path: '', component: HeaderComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogin}, children: [
+  { path: '', component: HeaderComponent, children: [
     { path: '', component: FrontpageComponent},
     { path: 'top10', component: Top10Component},
     { path: 'list', component: ListComponent},

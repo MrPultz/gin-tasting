@@ -26,6 +26,7 @@ import { NavbarComponent } from './components/admin/navbar/navbar.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ShowEventComponent } from './pages/admin/show-event/show-event.component';
 import { GinRenderBigComponent } from './components/gin-render-big/gin-render-big.component';
+import { GinEventCardComponent } from './components/gin-event-card/gin-event-card.component';
 
 
 @NgModule({
@@ -46,7 +47,7 @@ import { GinRenderBigComponent } from './components/gin-render-big/gin-render-bi
     RegisterComponent,
     ShowEventComponent,
     GinRenderBigComponent,
-
+    GinEventCardComponent
   ],
   imports: [
     BrowserModule,

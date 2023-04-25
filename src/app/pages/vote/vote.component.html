@@ -1,1 +1,21 @@
-<p>vote works!</p>
+<div *ngIf="event else noEvent">
+    <div class="text-white">
+        <h1>{{event.name}}</h1>
+        <div *ngFor="let gin of event.gins">
+            <gin-event-card [gin]="gin"></gin-event-card>
+        </div>
+    </div>
+</div>
+
+<ng-template #noEvent>
+    <div class="text-white join-event">
+        <h1>Enter code</h1>
+        <div class="code">
+            <input *ngFor="let code of eventCode; index as i;trackBy:trackByIndex;" (keydown)="keyDown($event)" (keyup)="goToNextInput($event)" 
+                        [(ngModel)]="eventCode[i]" [class.error]="codeError"
+                        maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}">
+        </div>
+        <p *ngIf="codeError">Could not find the event</p>
+        <button (click)="getEvent()">Join Event</button>
+    </div>
+</ng-template>

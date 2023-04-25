@@ -12,15 +12,15 @@ export class GinService {
   private readonly ginPath = "/Gins";
   private readonly ginConverter = {
     toFirestore(gin: Gin): DocumentData {
-      return {name: gin.name, brand: gin.brand, avgPoints: gin.avgPoints, country: gin.country, valueLiterPoint: gin.valueLiterPoint, valuePerLiter: gin.valuePerLiter, variant: gin.variant, vol: gin.vol, votes: gin.votes, img: gin.img}
+      return { name: gin.name, brand: gin.brand, avgPoints: gin.avgPoints, country: gin.country, valueLiterPoint: gin.valueLiterPoint, valuePerLiter: gin.valuePerLiter, variant: gin.variant, vol: gin.vol, votes: gin.votes, img: gin.img, cl: gin.cl, price: gin.price}
     },
     fromFirestore(snapshot: QueryDocumentSnapshot<Gin>, options: any): Gin {
       const data = snapshot.data(options)!;
-      return data 
+      return data
     }
   }
 
-  constructor(private dbService: DbService) { 
+  constructor(private dbService: DbService) {
   }
 
   public getGins(): Observable<Gin[]> {

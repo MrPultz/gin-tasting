@@ -7,3 +7,9 @@ export interface tastingEvent {
     code: number,
     id?: string
 }
+
+export interface eventRating {
+    name: string,
+    rating: number,
+    id?: string,
+}
