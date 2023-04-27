@@ -8,9 +8,9 @@
             <p><b>Variant:</b> {{gin.variant}}</p>
             <p><b>Vol %:</b> {{gin.vol}}</p>
             <p><b>Price:</b> {{gin.price}}</p>
-            <p><b>Kr/L:</b> {{gin.valuePerLiter}}</p>
-            <p><b>Avg Points:</b> {{gin.avgPoints}}</p>
-            <p><b>Kr/L/Points:</b> {{gin.valueLiterPoint}}</p>
+            <p><b>Kr/L:</b> {{gin.valuePerLiter | number: '1.0-2'}}</p>
+            <p><b>Avg Points:</b> {{gin.avgPoints | number: '1.0-2'}}</p>
+            <p><b>Kr/L/Points:</b> {{gin.valueLiterPoint | number: '1.0-2'}}</p>
             <p><b>Antal Stemmer:</b> {{gin.votes}}</p>
         </div>
     </div>

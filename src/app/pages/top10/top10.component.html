@@ -1,6 +1,6 @@
 <div class="w-full flex items-center flex-col">
     <h1 class="text-yellow-600 uppercase font-bold text-6xl mt-8 mb-8">Top 10 list of gins</h1>
-    <div class="flex flex-wrap justify-evenly w-8/12 text-white">
+    <div class="flex flex-col justify-evenly w-auto text-white">
         <div *ngFor="let gin of gins | async">
             <gin-render [gin]="gin"></gin-render>
         </div>
