@@ -38,8 +38,8 @@
             <gin-render [gin]="gin"></gin-render>
         </div>-->
 
-        <div class="carousel flex relative overflow-hidden height justify-center items-center">
-            <div *ngFor="let item of event.gins let i = index" [ngClass]="{ 'active': activeItemIndex === i }">
+        <div class="carousel flex relative overflow-hidden justify-center items-center">
+            <div *ngFor="let item of event.gins let i = index" [ngClass]="{ 'active w-full': activeItemIndex === i }">
               <!--<img [src]="item.img" alt="{{item.name}}" class="w-40">-->
               <!--<gin-render [gin]="item"></gin-render>-->
               <app-gin-render-big [gin]="item"></app-gin-render-big>        
