@@ -18,6 +18,7 @@ export class ShowEventComponent implements OnInit {
   event: tastingEvent | undefined;
   ratings: eventRating[] = [];
   activeItemIndex: number = 0;
+  sortedGins: Gin[] = [];
 
   constructor(private route: ActivatedRoute, private eventService: EventService) { }
 
@@ -26,10 +27,12 @@ export class ShowEventComponent implements OnInit {
     if(id) {
       const eventSub = this.eventService.getEvent(id).subscribe(event => {
         this.event = event;
+        this.sortedGins = event.gins.slice();
       });
       this.subscriptions.add(eventSub);
       const ratingSub = this.eventService.getRatings(id).subscribe(ratings => {
         this.calculateRating(ratings);
+        this.sortArray();
       });
       this.subscriptions.add(ratingSub);
     }
@@ -37,6 +40,10 @@ export class ShowEventComponent implements OnInit {
 
   ngOnDestory(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  sortArray() {
+    this.sortedGins.sort((a,b) => b.avgPoints - a.avgPoints);
   }
 
   calculateRating(_ratings: eventRating[]): void {
@@ -59,6 +66,7 @@ export class ShowEventComponent implements OnInit {
       gin.valueLiterPoint = gin.valuePerLiter / gin.avgPoints;
       this.ratings.push(rating);
     }
+
   }
   previousItem() {
     this.activeItemIndex = this.activeItemIndex === 0 ? this.eventService.getEvents.length - 1 : this.activeItemIndex - 1;

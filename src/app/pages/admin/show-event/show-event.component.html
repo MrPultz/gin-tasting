@@ -61,25 +61,15 @@
               <tr>
                 <th>Rank</th>
                 <th>Name</th>
-                <th>Points</th>
+                <th>AVG</th>
               </tr>
             </thead>
             <tbody>
                 <!-- Here needs to be the for loop -->
-              <tr>
-                <td>1</td>
-                <td>Mermaid Gin</td>
-                <td>20</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Bulldog London Dry</td>
-                <td>18</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Skagerrak Nordic dry</td>
-                <td>15</td>
+              <tr *ngFor="let gin of sortedGins; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{gin.name}}</td>
+                <td>{{gin.avgPoints}}</td>
               </tr>
             </tbody>
           </table>
