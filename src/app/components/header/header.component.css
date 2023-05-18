@@ -1,0 +1,38 @@
+.menu {
+    display: flex;
+    align-items: center;
+}
+
+.burger {
+    padding: 0 10px;
+    border-left: 1px solid #eee;
+    display: none;
+    cursor: pointer;
+  }
+
+  .burger i {
+    color: #999;
+    line-height: 60px;
+      
+  }
+
+
+@media (max-width: 786px){
+    .burger{
+        display: block;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .is-open {
+        display: block;
+        position: absolute;
+        top: 62px;
+        background: #000;
+        width: 100%;
+    }
+
+
+}

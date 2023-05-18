@@ -1,8 +1,8 @@
-<div *ngIf="event else noEvent">
+<div *ngIf="event else noEvent" class="flex w-full justify-center">
     <div class="text-white">
-        <h1>{{event.name}}</h1>
-        <div *ngFor="let gin of event.gins">
-            <gin-event-card [gin]="gin"></gin-event-card>
+        <h1 class="flex justify-center">{{event.name}}</h1>
+        <div *ngFor="let gin of event.gins" class="flex w-full justify-center">
+            <gin-event-card [gin]="gin" class="flex justify-center"></gin-event-card>
         </div>
     </div>
 </div>
