@@ -10,28 +10,50 @@ import { EventService } from 'src/app/services/event.service';
 })
 export class GinEventCardComponent implements OnInit {
 
-  @Input() gin: Gin | undefined = undefined;
-  @Input() eventID: string;
+  @Input() gin: Gin | undefined;
+  @Input() eventID: string | undefined;
+
+  rating: number = 0;
+  ratingValue: number[] = [1,2,3,4,5];
 
   hasRated: boolean = false;
 
   constructor(private eventService: EventService) {
-    this.eventID = "";
   }
 
   ngOnInit(): void {
+    if(this.gin != null) {
+      const rating = localStorage.getItem(this.gin.name);
+      console.log(rating);
+      if(rating) {
+        this.rating = +rating;
+        this.hasRated = true;
+      }
+    }
   }
 
-  giveRating(_rating: string): void {
-    if(!this.gin) {
+  giveRating(): void {
+    if(!this.gin || this.eventID == null) {
       return;
     }
     const rating: eventRating = {
       name: this.gin?.name,
-      rating: +_rating,
+      rating: this.rating,
     }
     this.eventService.giveGinRating(this.eventID, rating);
     this.hasRated = true;
+    localStorage.setItem(this.gin.name, this.rating.toString());
+  }
+
+  setRating(value: number): void {
+    for(let number of this.ratingValue) {
+      if(number == value) {
+        document.querySelector(`#rating-${number}`)?.classList.toggle("active");
+      } else {
+        document.querySelector(`#rating-${number}`)?.classList.remove("active");
+      }
+    }
+    this.rating = value;
   }
 
 }

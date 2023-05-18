@@ -25,3 +25,7 @@
 input.error {
     border: .5px solid red;
 }
+
+.event-name {
+    font-size: 35px;
+}
