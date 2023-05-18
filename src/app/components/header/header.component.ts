@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+  isMenuOpen = false;
   user: User | undefined = undefined;
 
   constructor(private authService: AuthService) { }
@@ -21,5 +22,9 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.authService.logout();
+  }
+
+  toggleMenu(): void{
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

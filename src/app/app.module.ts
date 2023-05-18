@@ -24,6 +24,10 @@ import { GinComponent } from './pages/admin/gin/gin.component';
 import { EventComponent } from './pages/admin/event/event.component';
 import { NavbarComponent } from './components/admin/navbar/navbar.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ShowEventComponent } from './pages/admin/show-event/show-event.component';
+import { GinRenderBigComponent } from './components/gin-render-big/gin-render-big.component';
+import { GinEventCardComponent } from './components/gin-event-card/gin-event-card.component';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +44,10 @@ import { RegisterComponent } from './pages/register/register.component';
     GinComponent,
     EventComponent,
     NavbarComponent,
-    RegisterComponent
+    RegisterComponent,
+    ShowEventComponent,
+    GinRenderBigComponent,
+    GinEventCardComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +59,7 @@ import { RegisterComponent } from './pages/register/register.component';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     providePerformance(() => getPerformance()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
   ],
   providers: [
     ScreenTrackingService,UserTrackingService

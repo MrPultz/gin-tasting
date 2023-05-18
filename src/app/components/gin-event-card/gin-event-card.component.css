@@ -1,0 +1,16 @@
+.active {
+    background-color: green;
+}
+
+.rating-buttons {
+    margin: 30px auto;
+}
+
+.padding {
+    padding: 10px;
+}
+
+.gin-name {
+    font-size: 25px;
+    font-weight: bold;
+}

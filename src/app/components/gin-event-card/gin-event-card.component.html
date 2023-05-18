@@ -1,0 +1,33 @@
+<div *ngIf="gin" class="flex w-11/12 bg-gradient-to-br from-yellow-400 to-yellow-800 p-1 rounded-lg justify-center items-center mb-5 text-white">
+  <div class="flex w-full bg-black rounded-lg padding justify-center items-center">
+    <div class="w-1/2 flex rounded-lg justify-center items-center">
+      <img [src]="gin.img" [alt]="gin.name" class="h-52" />
+    </div>
+    <div
+      class="h-5/6 w-96 border-l-2 border-yellow-600 border-dashed flex flex-auto pl-5 items-left flex-col text-left"
+    >
+      <p class="gin-name">{{ gin.name }}</p>
+      <p><b>Brand:</b> {{ gin.brand }}</p>
+      <p><b>Country:</b> {{ gin.country }}</p>
+      <p><b>Variant:</b> {{ gin.variant }}</p>
+      <p>{{ gin.vol }} %</p>
+      <p>{{ gin.price }} kr.</p>
+      <div *ngIf="!hasRated">
+        <div class="flex w-11/12 justify-between flex-wrap text-xl rating-buttons">
+          <button
+            *ngFor="let value of ratingValue"
+            id="rating-{{ value }}"
+            (click)="setRating(value)"
+            class="w-10 h-9 rounded-lg bg-blue-400 hover:bg-blue-600">
+            {{ value }}
+          </button>
+        </div>
+
+        <button (click)="giveRating()">Submit</button>
+      </div>
+      <div *ngIf="hasRated">
+        Your rating: <strong>{{rating}}</strong>
+      </div>
+    </div>
+  </div>
+</div>

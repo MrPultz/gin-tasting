@@ -27,6 +27,10 @@
                 <label for="price" class="form__label">Price</label>
             </div>
             <div class="form__group field">
+                <input type="number" class="form__field" placeholder="Cl" name="cl" id="cl" formControlName="cl" />
+                <label for="cl" class="form__label">Cl</label>
+            </div>
+            <div class="form__group field">
                 <input type="file" class="form__field" (change)="onFileSelected($event)" placeholder="Upload" name="upload" id="myFile" name="filename" accept="image/png, image/gif, image/jpeg" style="border-bottom: 0px; font-size: 1rem; margin-top: 15px;">
                 <label for="price" class="form__label" style="font-size:1.3rem;">Upload image</label>
 

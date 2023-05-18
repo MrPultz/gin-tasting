@@ -1,27 +1,24 @@
 <div class="flex w-auto ml-16 h-screen bg-gray-700 items-center flex-col">
     <h2 class="text-white font-Roboto text-5xl mt-8">Create Event</h2>
-    <div class="w-2/12 flex flex-col items-center">
+    <div class="w-12/12 flex flex-col items-center">
         <form [formGroup]="createEventForm" (ngSubmit)="submit()" class="w-full flex flex-col justify-center mt-6">
             <div class="form__group field">
-                <input type="input" class="form__field" placeholder="Name" name="name" id="name" required />
+                <input type="text" class="form__field" placeholder="Name" name="name" id="name" formControlName="name" />
                 <label for="name" class="form__label">Name</label>
             </div>
-            <input class="border-gray-500 border-2 h-12 font-Roboto text-gray-500 text-lg mt-8 cursor-pointer buttonStyle" type="submit">
-        </form>
 
-        <div class="text-white mt-5 font-Roboto text-xl flex flex-col">
-            <h2>Gin this Event</h2>
-            <li class="ml-6">First gin</li>
-            <li class="ml-6">Second gin</li>
-        </div>
-        <div class="text-white mt-4 font-Roboto text-xl flex-col flex">
-            <label for="gins">List of all Gins:</label>
-            <select class="bg-white text-black" id="gins" name="gins">
-              <option value="First">First Gin</option>
-              <option value="Second">Second Gin</option>
-              <option value="Another">Another Gin</option>
-              <option value="Last">Last Gin</option>
-            </select> 
-        </div>
+            <div *ngIf="gins$ | async as gins; else noGins" class="gins">
+                <div *ngFor="let gin of gins" class="gin" (click)="selectGin($event, gin)">
+                    {{gin.name}}
+                </div>
+            </div>
+            <ng-template #noGins>
+                <div style="color:white">
+                    <p>There is no gin</p>
+                    <button routerLink="/admin/gin">Add new a gin</button>
+                </div>
+            </ng-template>
+            <input [disabled]="!createEventForm.valid" class="border-gray-500 border-2 h-12 font-Roboto text-gray-500 text-lg mt-8 cursor-pointer buttonStyle" type="submit">
+        </form>
     </div>
 </div>

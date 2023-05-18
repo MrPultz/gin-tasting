@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { getDownloadURL } from '@firebase/storage';
 import { Gin } from 'src/app/models/Gin';
-import { DbService } from 'src/app/services/db.service';
+import { GinService } from 'src/app/services/gin.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -31,10 +31,13 @@ export class GinComponent implements OnInit {
     price: new FormControl(0, [
       Validators.required,
     ]),
+    cl: new FormControl(0, [
+      Validators.required,
+    ]),
   });
   file: File | undefined;
 
-  constructor(private dbService: DbService, private storageService: StorageService) { }
+  constructor(private ginService: GinService, private storageService: StorageService) { }
 
   ngOnInit(): void {
   }
@@ -52,7 +55,7 @@ export class GinComponent implements OnInit {
       getDownloadURL(storageRef).then(url => {
         if (!this.addGinForm.value.ginName || !this.addGinForm.value.brand ||
           !this.addGinForm.value.variant || !this.addGinForm.value.country ||
-          !this.addGinForm.value.price || !this.addGinForm.value.vol || !this.addGinForm.value.price) {
+          !this.addGinForm.value.price || !this.addGinForm.value.vol || !this.addGinForm.value.price || !this.addGinForm.value.cl) {
           return;
         }
         const gin: Gin = {
@@ -66,10 +69,11 @@ export class GinComponent implements OnInit {
           vol: this.addGinForm.value.vol,
           votes: 0,
           price: this.addGinForm.value.price,
-          img: url
+          img: url,
+          cl: this.addGinForm.value.cl
         };
         this.addGinForm.reset();
-        this.dbService.addGin(gin);
+        this.ginService.addGin(gin);
       });
     }).catch(err => {
       // Error while uploading img
