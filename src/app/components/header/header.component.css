@@ -22,17 +22,23 @@
         display: block;
     }
 
+    .hide {
+        display: none;
+    }
+
     .menu {
         display: none;
     }
 
     .is-open {
-        display: block;
+        display: flex;
+        justify-content: center;
+        background: #3c3c3c;
         position: absolute;
-        top: 62px;
-        background: #000;
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, 0%);
         width: 100%;
+        padding: 12px 0;
     }
-
-
 }

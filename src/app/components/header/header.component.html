@@ -1,14 +1,13 @@
 <div class="w-full flex flex-wrap justify-center items-center sticky top-0 h-24 bg-black border-b-2 border-yellow-600">
-    <div class="w-9/12 flex relative justify-center items-center">
-        <div class="w-auto absolute left-8">
+    <div class="w-9/12 flex relative justify-around items-center">
+        <div class="w-auto">
             <a routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page"><h1 class="text-4xl font-bold text-white">BORD</h1></a>
         </div>
-        <div class="absolute right-8">
+        <div>
             <li class="burger" (click)="toggleMenu()">
                 <i class="material-icons">{{ isMenuOpen ? "close" : "menu"}}</i>
             </li>
-            <ul class="text-white text-lg font-bold flex flex-wrap space-x-7 menu" [class.is-open]="isMenuOpen">
-                
+            <ul class="text-white text-lg font-bold flex flex-wrap space-x-7 menu" [class.is-open]="isMenuOpen" [class.hide]="!isMenuOpen">
                 <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/top10" routerLinkActive="active" ariaCurrentWhenActive="page">Top 10</a></li>
                 <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/list" routerLinkActive="active" ariaCurrentWhenActive="page">Gins</a></li>
                 <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/vote" routerLinkActive="active" ariaCurrentWhenActive="page">Join Event</a></li>
