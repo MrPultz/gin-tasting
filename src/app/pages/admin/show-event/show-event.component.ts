@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { idToken } from '@angular/fire/auth';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, forkJoin, mergeMap, take } from 'rxjs';
 import { Gin } from 'src/app/models/Gin';
 import { eventRating, tastingEvent } from 'src/app/models/event';
 import { EventService } from 'src/app/services/event.service';
+import { GinService } from 'src/app/services/gin.service';
 
 @Component({
   selector: 'app-show-event',
@@ -20,7 +20,7 @@ export class ShowEventComponent implements OnInit {
   activeItemIndex: number = 0;
   sortedGins: Gin[] = [];
 
-  constructor(private route: ActivatedRoute, private eventService: EventService) { }
+  constructor(private route: ActivatedRoute, private eventService: EventService, private ginService: GinService) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -62,17 +62,51 @@ export class ShowEventComponent implements OnInit {
       }
       gin.votes++;
       gin.avgPoints = ((gin.avgPoints * (gin.votes - 1)) + rating.rating) / gin.votes;
-      gin.valuePerLiter = (gin.price / gin.cl) * 100;
       gin.valueLiterPoint = gin.valuePerLiter / gin.avgPoints;
       this.ratings.push(rating);
     }
 
   }
+
   previousItem() {
-    this.activeItemIndex = this.activeItemIndex === 0 ? this.eventService.getEvents.length - 1 : this.activeItemIndex - 1;
+    if(!this.event) {
+      return;
+    }
+    this.activeItemIndex = this.activeItemIndex === 0 ? this.event?.gins.length - 1 : this.activeItemIndex - 1;
   }
   
   nextItem() {
-    this.activeItemIndex = this.activeItemIndex === this.eventService.getEvents.length - 1 ? 0 : this.activeItemIndex + 1;
+    if(!this.event) {
+      return;
+    }
+    this.activeItemIndex = this.activeItemIndex === this.event?.gins.length - 1 ? 0 : this.activeItemIndex + 1; 
+  }
+  
+  finishEvent() {
+    if(!this.event) {
+      return;
+    }
+    const updateObservables: Observable<void>[] = [];
+
+    for(let gin of this.event.gins) {
+      if(!gin.id) {
+        continue;
+      }
+      
+      const updateObservable = this.ginService.getGin(gin.id).pipe(
+        take(1), // Ensure the inner observable completes after emitting one value
+        mergeMap(globalGin => {
+          globalGin.id = gin.id;
+          globalGin.votes = globalGin.votes === 0 ? gin.votes : globalGin.votes + gin.votes;
+          globalGin.avgPoints = globalGin.avgPoints === 0 ? gin.avgPoints : (globalGin.avgPoints + gin.avgPoints) / 2;
+          globalGin.valueLiterPoint = globalGin.valuePerLiter / globalGin.avgPoints;
+          return this.ginService.updateGin(globalGin);
+        })
+      );
+      updateObservables.push(updateObservable);
+    }
+
+    const forkSub = forkJoin(updateObservables).subscribe();
+    this.subscriptions.add(forkSub);
   }
 }

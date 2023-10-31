@@ -1,4 +1,5 @@
 export interface Gin {
+    id?:string,
     name: string,
     brand: string,
     avgPoints: number,
