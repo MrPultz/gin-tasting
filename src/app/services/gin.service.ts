@@ -27,6 +27,10 @@ export class GinService {
     return this.dbService.getAll<Gin>(this.ginPath, this.ginConverter);
   }
 
+  public getGin(id: string): Observable<Gin> {
+    return this.dbService.getDoc<Gin>(`${this.ginPath}/${id}`, this.ginConverter);
+  }
+
   public getTop10Gins(): Observable<Gin[]> {
     return this.dbService.getOrderByWithLimit(10, "avgPoints", "desc", this.ginPath, this.ginConverter);
   }
@@ -37,5 +41,12 @@ export class GinService {
 
   public addGin(gin: Gin): void {
     this.dbService.add(gin, this.ginPath, this.ginConverter);
+  }
+
+  public updateGin(gin: Gin): Promise<void> {
+    if(!gin.id) {
+      return Promise.reject('Could not find gin id');
+    }
+    return this.dbService.update(gin, `${this.ginPath}/${gin.id}`, this.ginConverter);
   }
 }

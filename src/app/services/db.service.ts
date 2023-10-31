@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, collectionData, doc, docData, Firestore, FirestoreDataConverter, limit, orderBy, query, QueryDocumentSnapshot, where } from '@angular/fire/firestore';
+import { addDoc, collection, collectionData, doc, docData, DocumentReference, Firestore, FirestoreDataConverter, limit, orderBy, query, QueryDocumentSnapshot, updateDoc, where } from '@angular/fire/firestore';
 import { traceUntilFirst } from '@angular/fire/performance';
 import { CollectionReference, DocumentData, OrderByDirection, SnapshotOptions } from '@firebase/firestore';
 import { EMPTY, Observable } from 'rxjs';
@@ -54,7 +54,7 @@ export class DbService {
     return data;
   }
 
-  getByField<T>(code: string, path: string, converter: FirestoreDataConverter<T>): Observable<T[]> {
+  getByField<T>(code: number, path: string, converter: FirestoreDataConverter<T>): Observable<T[]> {
     const colRef = collection(this.firestore, path).withConverter(converter);
     if(colRef == null) {
       return EMPTY;
@@ -74,7 +74,18 @@ export class DbService {
       addDoc(colRef, value);
   }
 
+  public update<T>(value: any, path: string, converter: FirestoreDataConverter<T>): Promise<void> {
+    const docRef = this.getDocRef(path, converter);
+    if(docRef)
+      return updateDoc(docRef, value);
+    return Promise.reject('Could not find docRef');
+  }
+
   private getColRef<T>(path: string, converter: FirestoreDataConverter<T>): CollectionReference<T> {
     return collection(this.firestore, path).withConverter(converter);
+  }
+
+  private getDocRef<T>(path: string, converter: FirestoreDataConverter<T>): DocumentReference<T> {
+    return doc(this.firestore, path).withConverter(converter);
   }
 }

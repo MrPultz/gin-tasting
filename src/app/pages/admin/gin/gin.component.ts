@@ -64,7 +64,7 @@ export class GinComponent implements OnInit {
           avgPoints: 0,
           country: this.addGinForm.value.country,
           valueLiterPoint: 0,
-          valuePerLiter: 0,
+          valuePerLiter: (this.addGinForm.value.price / this.addGinForm.value.cl) * 100,
           variant: this.addGinForm.value.variant,
           vol: this.addGinForm.value.vol,
           votes: 0,
@@ -77,6 +77,7 @@ export class GinComponent implements OnInit {
       });
     }).catch(err => {
       // Error while uploading img
+      console.error(err);
       return;
     });
   }

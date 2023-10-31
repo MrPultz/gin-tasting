@@ -71,11 +71,12 @@ export class VoteComponent implements OnInit {
   }
   
   getEvent(): void {
-    if (this.eventCode.join('').length !== 4) {
+    const eventCode = +this.eventCode.join('');
+    if (eventCode.toString().length !== 4 || isNaN(eventCode)) {
       this.codeError = true;
       return;
     }
-    const eventSub = this.eventService.getEventByCode(this.eventCode.join('')).subscribe(events => {
+    const eventSub = this.eventService.getEventByCode(eventCode).subscribe(events => {
       const event = events[0];
       if(!event) 
         this.codeError = true;

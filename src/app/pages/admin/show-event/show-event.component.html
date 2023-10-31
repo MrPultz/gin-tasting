@@ -1,10 +1,8 @@
 <div class="flex w-auto ml-16 h-screen bg-gray-700 justify-center font-Roboto text-center">
     <div *ngIf="event" class="text-white flex flex-col items-center w-10/12">
         <div class="header mb-10 mt-10">
-            <span class="text-4xl">{{event.code}}</span>
-            <!--<h1>{{event.name}}</h1>-->
+            <span class="text-4xl">Event Code: {{event.code}}</span>
         </div> 
-
         <div class="carousel flex relative overflow-hidden justify-center items-center">
             <div *ngFor="let item of event.gins let i = index" [ngClass]="{ 'active w-full': activeItemIndex === i }">
               <app-gin-render-big [gin]="item"></app-gin-render-big>        
@@ -36,5 +34,6 @@
               </tr>
             </tbody>
           </table>
+          <button (click)="finishEvent()" class="mt-auto mb-10 bg-yellow-600 block rounded-lg p-4 w-40 border-black border-1 hover:bg-yellow-800">Finish Event</button>
     </div>
 </div>
