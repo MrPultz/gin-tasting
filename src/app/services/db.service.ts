@@ -54,7 +54,7 @@ export class DbService {
     return data;
   }
 
-  getByField<T>(code: string, path: string, converter: FirestoreDataConverter<T>): Observable<T[]> {
+  getByField<T>(code: number, path: string, converter: FirestoreDataConverter<T>): Observable<T[]> {
     const colRef = collection(this.firestore, path).withConverter(converter);
     if(colRef == null) {
       return EMPTY;

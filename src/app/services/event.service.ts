@@ -44,7 +44,7 @@ export class EventService {
     return this.dbService.getDoc(`${this.eventPath}/${id}`, this.eventConverter);
   }
 
-  getEventByCode(code: string): Observable<tastingEvent[]> {
+  getEventByCode(code: number): Observable<tastingEvent[]> {
     return this.dbService.getByField(code, this.eventPath, this.eventConverter);
   }
 
