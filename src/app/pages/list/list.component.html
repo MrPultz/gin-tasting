@@ -1,33 +1,31 @@
-<!-- For each gin in the DB print this -->
-<div class="w-full flex justify-center items-center mt-10">
-    <table class="table-auto text-white border-collapse border border-slate-700">
-        <thead>
+<div class="m-10 overflow-auto" style="max-height: 80svh;">
+    <table class="table-auto text-white border-collapse border border-slate-700 m-auto">
+        <thead class="sticky top-[-1px]">
             <tr class="border border-slate-600">
-                <th class="border border-slate-600 p-2">Name</th>
-                <th class="border border-slate-600 p-2">Brand</th>
-                <th class="border border-slate-600 p-2">Country</th>
-                <th class="border border-slate-600 p-2">Variant</th>
-                <th class="border border-slate-600 p-2">Vol %</th>
-                <th class="border border-slate-600 p-2">Price: </th>
-                <th class="border border-slate-600 p-2">Kr/L: </th>
-                <th class="border border-slate-600 p-2">Avg Points: </th>
-                <th class="border border-slate-600 p-2">Kr/L/Points: </th>
-                <th class="border border-slate-600 p-2">Votes: </th>
+                <th class="border border-slate-600">Name</th>
+                <th class="border border-slate-600">Brand</th>
+                <th class="border border-slate-600">Country</th>
+                <th class="border border-slate-600">Variant</th>
+                <th class="border border-slate-600">Vol %</th>
+                <th class="border border-slate-600">Price </th>
+                <th class="border border-slate-600">Kr/L </th>
+                <th class="border border-slate-600">Avg Points</th>
+                <th class="border border-slate-600">Kr/L/Points</th>
+                <th class="border border-slate-600">Votes</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let gin of gins | async" class="border border-slate-600 p-2">
-                <td class="border border-slate-600 p-2">{{gin.name}}</td>
-                <td class="border border-slate-600 p-2">{{gin.brand}}</td>
-                <td class="border border-slate-600 p-2">{{gin.country}}</td>
-                <td class="border border-slate-600 p-2">{{gin.variant}}</td>
-                <td class="border border-slate-600 p-2">{{gin.vol}}</td>
-
-                <td class="border border-slate-600 p-2">{{gin.price}}</td>
-                <td class="border border-slate-600 p-2">{{gin.valuePerLiter | number: '1.0-2'}}</td>
-                <td class="border border-slate-600 p-2">{{gin.avgPoints | number: '1.0-2'}}</td>
-                <td class="border border-slate-600 p-2">{{gin.valueLiterPoint | number: '1.0-2'}}</td>
-                <td class="border border-slate-600 p-2">{{gin.votes}}</td>
+                <td class="border border-slate-600">{{gin.name}}</td>
+                <td class="border border-slate-600">{{gin.brand}}</td>
+                <td class="border border-slate-600">{{gin.country}}</td>
+                <td class="border border-slate-600">{{gin.variant}}</td>
+                <td class="border border-slate-600">{{gin.vol}}</td>
+                <td class="border border-slate-600">{{gin.price}}</td>
+                <td class="border border-slate-600">{{gin.valuePerLiter | number: '1.0-2'}}</td>
+                <td class="border border-slate-600">{{gin.avgPoints | number: '1.0-2'}}</td>
+                <td class="border border-slate-600">{{gin.valueLiterPoint | number: '1.0-2'}}</td>
+                <td class="border border-slate-600">{{gin.votes}}</td>
             </tr>
         </tbody>
     </table>
