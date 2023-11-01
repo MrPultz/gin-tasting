@@ -1,10 +1,12 @@
-.gin-list {
-    display: flex;
-    column-gap: 10px;
-    justify-content: flex-end;
-}
-
-.gin-list > h1 {
+.gin > h1 {
     font-size: 2rem;
     color: #facc15;
+}
+
+.gin ~ .gin {
+    margin-top: 20px;
+}
+
+.gin:last-child {
+    margin-bottom: 20px;
 }
