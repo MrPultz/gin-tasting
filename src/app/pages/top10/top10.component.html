@@ -1,7 +1,8 @@
 <div class="w-full flex items-center flex-col">
     <h1 class="text-yellow-600 uppercase font-bold text-6xl mt-8 mb-8">Top 10 list of gins</h1>
     <div class="flex flex-col justify-evenly w-auto text-white">
-        <div *ngFor="let gin of gins | async">
+        <div *ngFor="let gin of gins | async; index as i" class="gin-list">
+            <h1>{{i + 1}}.</h1>
             <gin-render [gin]="gin"></gin-render>
         </div>
     </div>

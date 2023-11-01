@@ -1,0 +1,10 @@
+.gin-list {
+    display: flex;
+    column-gap: 10px;
+    justify-content: flex-end;
+}
+
+.gin-list > h1 {
+    font-size: 2rem;
+    color: #facc15;
+}
