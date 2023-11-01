@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription, forkJoin, mergeMap, take } from 'rxjs';
 import { Gin } from 'src/app/models/Gin';
@@ -11,7 +11,7 @@ import { GinService } from 'src/app/services/gin.service';
   templateUrl: './show-event.component.html',
   styleUrls: ['./show-event.component.css']
 })
-export class ShowEventComponent implements OnInit {
+export class ShowEventComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription = new Subscription;
 
@@ -38,7 +38,7 @@ export class ShowEventComponent implements OnInit {
     }
   }
 
-  ngOnDestory(): void {
+  ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
 

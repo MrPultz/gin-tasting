@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Gin } from 'src/app/models/Gin';
 import { GinService } from 'src/app/services/gin.service';
@@ -8,7 +8,7 @@ import { GinService } from 'src/app/services/gin.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, OnDestroy {
 
   gins: Observable<Gin[]>;
 
@@ -17,6 +17,10 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+
   }
 
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Gin } from 'src/app/models/Gin';
 import { GinService } from 'src/app/services/gin.service';
 
@@ -8,7 +8,7 @@ import { GinService } from 'src/app/services/gin.service';
   templateUrl: './frontpage.component.html',
   styleUrls: ['./frontpage.component.css']
 })
-export class FrontpageComponent implements OnInit {
+export class FrontpageComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription = new Subscription;
 
@@ -28,7 +28,7 @@ export class FrontpageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ngOnDestory(): void {
+  ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
 
