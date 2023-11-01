@@ -1,0 +1,32 @@
+.gin {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    background-clip: padding-box;
+    border: 5px solid transparent;
+    border-radius: 8px;
+    margin: auto;
+}
+
+.gin:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: -5px;
+    border-radius: inherit;
+    background: linear-gradient(to bottom right, #facc15, #854d0e);
+    z-index: -1;
+}
+
+.gin-img {
+    object-fit: contain;
+}
+
+.gin-info {
+    border-left: 2px dashed #ca8a03;
+    padding: 10px 25px;
+}

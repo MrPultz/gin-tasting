@@ -9,3 +9,12 @@
 .heightInner {
     height: 494px;
 }
+
+.gin-info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 130px;
+    margin: auto 0;
+    line-height: 2;
+}

@@ -1,19 +1,31 @@
 <div *ngIf="gin" class="flex w-full height bg-gradient-to-br from-yellow-400 to-yellow-800 p-1 rounded-lg justify-center items-center mb-5">
-    <div class="flex w-full heightInner bg-black rounded-lg justify-center items-center">
-        <div class="w-1/3 flex rounded-lg justify-center items-center"><img [src]="gin.img" [alt]="gin.name" class="object-cover heightInner p-4" /></div>
-        <div class="h-5/6 w-96 border-l-2 border-yellow-600 border-dashed flex flex-auto pl-5 items-left flex-col text-left text-2xl">
-            <p class="text-4xl"><b>{{gin.name}}</b></p>
-            <p><b>Brand:</b> {{gin.brand}}</p>
-            <p><b>Country:</b> {{gin.country}}</p>
-            <p><b>Variant:</b> {{gin.variant}}</p>
-            <p><b>Vol %:</b> {{gin.vol}}</p>
-            <p><b>Price:</b> {{gin.price}} kr.</p>
-            <br>
-            <p><b>Kr/L:</b> {{gin.valuePerLiter | number: '1.0-2'}}</p>
-            <p><b>Kr/L/Points:</b> {{gin.valueLiterPoint | number: '1.0-2'}}</p>
-            <p><b>Avg Points:</b> {{gin.avgPoints | number: '1.0-2'}}</p>
-            <br>
-            <p><b>Antal Stemmer:</b> {{gin.votes}}</p>
+  <div class="flex w-full heightInner bg-black rounded-lg justify-center items-center">
+    <div class="w-1/3 flex rounded-lg justify-center items-center">
+      <img
+        [src]="gin.img"
+        [alt]="gin.name"
+        class="object-cover heightInner p-4"
+      />
+    </div>
+    <div class="h-5/6 w-96 border-l-2 border-yellow-600 border-dashed flex flex-auto pl-5 items-left flex-col text-left text-2xl">
+      <h1 class="text-5xl">
+        <b>{{ gin.name }}</b>
+      </h1>
+      <div class="gin-info">
+        <div>
+          <p><b>Brand:</b> {{ gin.brand }}</p>
+          <p><b>Country:</b> {{ gin.country }}</p>
+          <p><b>Variant:</b> {{ gin.variant }}</p>
+          <p><b>Vol %:</b> {{ gin.vol }}</p>
+          <p><b>Price:</b> {{ gin.price }} kr.</p>
+        </div>
+        <div>
+          <p><b>Kr/L:</b> {{ gin.valuePerLiter | number : "1.0-2" }}</p>
+          <p><b>Kr/L/Points:</b> {{ gin.valueLiterPoint | number : "1.0-2" }}</p>
+          <p><b>Avg Points:</b> {{ gin.avgPoints | number : "1.0-2" }}</p>
         </div>
     </div>
+    <p><b>Antal Stemmer:</b> {{ gin.votes }}</p>
+    </div>
+  </div>
 </div>

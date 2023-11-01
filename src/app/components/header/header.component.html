@@ -1,23 +1,21 @@
-<div class="w-full flex flex-wrap justify-center items-center sticky top-0 h-24 bg-black border-b-2 border-yellow-600">
-    <div class="w-9/12 flex relative justify-around items-center">
-        <div class="w-auto">
-            <a routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page"><h1 class="text-4xl font-bold text-white">BORD</h1></a>
+<div class="flex justify-between md:justify-around items-center border-b-2 border-yellow-600 p-10">
+    <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page"><h1 class="text-4xl font-bold text-white">BORD</h1></a>
+    <div>
+        <div class="burger" (click)="toggleMenu()">
+            <i class="material-icons">{{ isMenuOpen ? "close" : "menu"}}</i>
         </div>
         <div>
-            <li class="burger" (click)="toggleMenu()">
-                <i class="material-icons">{{ isMenuOpen ? "close" : "menu"}}</i>
-            </li>
-            <ul class="text-white text-lg font-bold flex flex-wrap space-x-7 menu" [class.is-open]="isMenuOpen" [class.hide]="!isMenuOpen">
-                <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/top10" routerLinkActive="active" ariaCurrentWhenActive="page">Top 10</a></li>
-                <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/list" routerLinkActive="active" ariaCurrentWhenActive="page">Gins</a></li>
-                <li class="cursor-pointer hover:text-yellow-600"><a routerLink="/vote" routerLinkActive="active" ariaCurrentWhenActive="page">Join Event</a></li>
-                <div *ngIf="user;" class="flex flex-wrap space-x-7">
-                    <li *ngIf="user.isAdmin" class="cursor-pointer hover:text-yellow-600"><a routerLink="/admin" routerLinkActive="active" ariaCurrentWhenActive="page">Dashboard</a></li>
-                    <li class="cursor-pointer hover:text-yellow-600"><a (click)="logout()">Logout</a></li>
+            <nav [class.is-open]="isMenuOpen" [class.hide]="!isMenuOpen" class="text-white text-lg font-bold flex flex-wrap md:space-x-7 menu">
+                <a class="hover:text-yellow-600" routerLink="/" (click)="closeMenu()" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a>
+                <a class="hover:text-yellow-600" routerLink="/top10" (click)="closeMenu()" routerLinkActive="active" ariaCurrentWhenActive="page">Top 10</a>
+                <a class="hover:text-yellow-600" routerLink="/list" (click)="closeMenu()" routerLinkActive="active" ariaCurrentWhenActive="page">All Gins</a>
+                <a class="hover:text-yellow-600" routerLink="/vote" (click)="closeMenu()" routerLinkActive="active" ariaCurrentWhenActive="page">Join Event</a>
+                <div *ngIf="user;" class="flex flex-wrap md:space-x-7 flex-col items-center md:flex-row">
+                    <a class="hover:text-yellow-600" routerLink="/admin" routerLinkActive="active" ariaCurrentWhenActive="page">Dashboard</a>
+                    <a class="hover:text-yellow-600" (click)="logout()">Logout</a>
                 </div>
-            </ul>
+            </nav>
         </div>
     </div>
 </div>
 <router-outlet></router-outlet>
-<footer></footer>

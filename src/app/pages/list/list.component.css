@@ -1,0 +1,16 @@
+thead {
+    background-color: #ca8a04;
+    color: black;
+}
+
+th, td {
+    padding: 10px 15px;
+}
+
+tbody > tr:hover {
+    background-color: hsl(41, 96%, 30%) !important;
+}
+
+tbody > tr:nth-child(even) {
+    background-color: hsl(0deg 0% 19%);
+}
