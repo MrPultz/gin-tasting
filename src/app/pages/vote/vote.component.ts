@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Gin } from 'src/app/models/Gin';
 import { tastingEvent } from 'src/app/models/event';
 import { EventService } from 'src/app/services/event.service';
 
@@ -9,7 +8,7 @@ import { EventService } from 'src/app/services/event.service';
   templateUrl: './vote.component.html',
   styleUrls: ['./vote.component.css']
 })
-export class VoteComponent implements OnInit {
+export class VoteComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription = new Subscription;
 
@@ -22,7 +21,7 @@ export class VoteComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ngOnDestory(): void {
+  ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
 

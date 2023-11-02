@@ -41,4 +41,8 @@
     padding: 12px 0;
     z-index: 99;
   }
+
+  .is-open a:hover {
+    color: hsl(41, 96%, 20%);
+  }
 }

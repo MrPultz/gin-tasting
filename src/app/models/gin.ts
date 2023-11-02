@@ -1,4 +1,5 @@
 export interface Gin {
+    [key: string]: any;
     id?:string,
     name: string,
     brand: string,

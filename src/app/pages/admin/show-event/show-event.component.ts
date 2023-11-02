@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription, forkJoin, mergeMap, take } from 'rxjs';
 import { Gin } from 'src/app/models/Gin';
 import { eventRating, tastingEvent } from 'src/app/models/event';
 import { EventService } from 'src/app/services/event.service';
 import { GinService } from 'src/app/services/gin.service';
+import { SortService } from 'src/app/services/sort.service';
 
 @Component({
   selector: 'app-show-event',
   templateUrl: './show-event.component.html',
   styleUrls: ['./show-event.component.css']
 })
-export class ShowEventComponent implements OnInit {
+export class ShowEventComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription = new Subscription;
 
@@ -20,7 +21,7 @@ export class ShowEventComponent implements OnInit {
   activeItemIndex: number = 0;
   sortedGins: Gin[] = [];
 
-  constructor(private route: ActivatedRoute, private eventService: EventService, private ginService: GinService) { }
+  constructor(private route: ActivatedRoute, private eventService: EventService, private ginService: GinService, private sort: SortService) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -32,13 +33,14 @@ export class ShowEventComponent implements OnInit {
       this.subscriptions.add(eventSub);
       const ratingSub = this.eventService.getRatings(id).subscribe(ratings => {
         this.calculateRating(ratings);
+        this.sort.asc(this.sortedGins, "avgPoints", true);
         this.sortArray();
       });
       this.subscriptions.add(ratingSub);
     }
   }
 
-  ngOnDestory(): void {
+  ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
 
