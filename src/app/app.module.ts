@@ -27,6 +27,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ShowEventComponent } from './pages/admin/show-event/show-event.component';
 import { GinRenderBigComponent } from './components/gin-render-big/gin-render-big.component';
 import { GinEventCardComponent } from './components/gin-event-card/gin-event-card.component';
+import { SortArrowsComponent } from './components/sort-arrows/sort-arrows.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { GinEventCardComponent } from './components/gin-event-card/gin-event-car
     RegisterComponent,
     ShowEventComponent,
     GinRenderBigComponent,
-    GinEventCardComponent
+    GinEventCardComponent,
+    SortArrowsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,4 @@
+<div *ngIf="currentAttr === attr" class="arrow">
+    <span *ngIf="isAsc; else downArrow">&#11105;</span>
+    <ng-template #downArrow><span #downArrow>&#11107;</span></ng-template>
+</div>

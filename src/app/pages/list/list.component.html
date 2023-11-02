@@ -1,21 +1,21 @@
-<div class="m-10 overflow-auto" style="max-height: 80svh;">
-    <table class="table-auto text-white border-collapse border border-slate-700 m-auto">
+<div class="mx-10 mt-10 overflow-auto" style="max-height: 80svh;">
+    <table class="w-full table-auto text-white border-collapse border border-slate-700 m-auto">
         <thead class="sticky top-[-1px]">
             <tr class="border border-slate-600">
-                <th class="border border-slate-600">Name</th>
-                <th class="border border-slate-600">Brand</th>
-                <th class="border border-slate-600">Country</th>
-                <th class="border border-slate-600">Variant</th>
-                <th class="border border-slate-600">Vol %</th>
-                <th class="border border-slate-600">Price </th>
-                <th class="border border-slate-600">Kr/L </th>
-                <th class="border border-slate-600">Avg Points</th>
-                <th class="border border-slate-600">Kr/L/Points</th>
-                <th class="border border-slate-600">Votes</th>
+                <th (click)="sortCell('name')" class="border border-slate-600">Name <sort-arrows attr="name" [currentAttr]=currentAttr [isAsc]=isAsc></sort-arrows></th>
+                <th (click)="sortCell('brand')" class="border border-slate-600">Brand <sort-arrows attr="brand" [currentAttr]=currentAttr [isAsc]=isAsc></sort-arrows></th>
+                <th (click)="sortCell('country')" class="border border-slate-600">Country <sort-arrows attr="country" [currentAttr]=currentAttr [isAsc]=isAsc></sort-arrows></th>
+                <th (click)="sortCell('variant')" class="border border-slate-600">Variant <sort-arrows attr="variant" [currentAttr]=currentAttr [isAsc]=isAsc></sort-arrows></th>
+                <th (click)="sortCell('vol')" class="border border-slate-600">Vol % <sort-arrows attr="vol" [currentAttr]=currentAttr [isAsc]=isAsc></sort-arrows></th>
+                <th (click)="sortCell('price')" class="border border-slate-600">Price <sort-arrows attr="price" [currentAttr]=currentAttr [isAsc]=isAsc></sort-arrows></th>
+                <th (click)="sortCell('valuePerLiter')" class="border border-slate-600">Kr/L <sort-arrows attr="valuePerLiter" [currentAttr]=currentAttr [isAsc]=isAsc></sort-arrows></th>
+                <th (click)="sortCell('avgPoints')" class="border border-slate-600">Avg Points <sort-arrows attr="avgPoints" [currentAttr]=currentAttr [isAsc]=isAsc></sort-arrows></th>
+                <th (click)="sortCell('valueLiterPoint')" class="border border-slate-600">Kr/L/Points <sort-arrows attr="valueLiterPoint" [currentAttr]=currentAttr [isAsc]=isAsc></sort-arrows></th>
+                <th (click)="sortCell('votes')" class="border border-slate-600">Votes <sort-arrows attr="votes" [currentAttr]=currentAttr [isAsc]=isAsc></sort-arrows></th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let gin of gins | async" class="border border-slate-600 p-2">
+            <tr *ngFor="let gin of gins" class="border border-slate-600 p-2">
                 <td class="border border-slate-600">{{gin.name}}</td>
                 <td class="border border-slate-600">{{gin.brand}}</td>
                 <td class="border border-slate-600">{{gin.country}}</td>
