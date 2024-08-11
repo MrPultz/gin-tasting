@@ -23,7 +23,7 @@
           </button>
         </div>
 
-        <button (click)="giveRating()">Submit</button>
+        <button (click)="giveRating()" [disabled]="rating === 0">Submit</button>
       </div>
       <div *ngIf="hasRated">
         Your rating: <strong>{{rating}}</strong>
