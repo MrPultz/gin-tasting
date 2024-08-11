@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { tastingEvent } from 'src/app/models/event';
 import { EventService } from 'src/app/services/event.service';
@@ -16,9 +17,13 @@ export class VoteComponent implements OnInit, OnDestroy {
   eventCode: string[] = ["", "", "", ""];
   codeError: boolean = false;
 
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    const code = this.route.snapshot.paramMap.get('code');
+    if(code) {
+      this.getEvent(+code)
+    }
   }
 
   ngOnDestroy(): void {
@@ -46,7 +51,7 @@ export class VoteComponent implements OnInit, OnDestroy {
 
     if (sibName !== nodeName && (this.eventCode[3] !== "" && this.eventCode[3] != null)) {
       if (e.key === "Enter") {
-        this.getEvent();
+        this.getEventClick();
       }
       return false;
     }
@@ -69,8 +74,15 @@ export class VoteComponent implements OnInit, OnDestroy {
     return index;
   }
   
-  getEvent(): void {
+  getEventClick(): void {
     const eventCode = +this.eventCode.join('');
+    this.getEvent(eventCode);
+  }
+
+  private getEvent(eventCode: number) {
+    if(this.event) {
+      return;
+    }
     if (eventCode.toString().length !== 4 || isNaN(eventCode)) {
       this.codeError = true;
       return;

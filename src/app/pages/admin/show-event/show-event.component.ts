@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription, forkJoin, mergeMap, take } from 'rxjs';
 import { Gin } from 'src/app/models/Gin';
 import { eventRating, tastingEvent } from 'src/app/models/event';
@@ -23,6 +23,7 @@ export class ShowEventComponent implements OnInit, OnDestroy {
   highestVol: Gin[] = [];
   bestPriceLiter: Gin[] = [];
   bestPriceLiterPoints: Gin[] = [];
+  QRCodeData = `${window.location.origin}/vote/`;
 
   constructor(private route: ActivatedRoute, private eventService: EventService, private ginService: GinService, private sort: SortService) { }
 
@@ -31,6 +32,7 @@ export class ShowEventComponent implements OnInit, OnDestroy {
     if(id) {
       const eventSub = this.eventService.getEvent(id).subscribe(event => {
         this.event = event;
+        this.QRCodeData += event.code    
         this.sortedGins = event.gins.slice();
         this.highestVol = Array.from(event.gins);
         this.bestPriceLiter = Array.from(event.gins);
@@ -45,7 +47,7 @@ export class ShowEventComponent implements OnInit, OnDestroy {
         this.sort.asc(this.bestPriceLiterPoints, "valueLiterPoint", true);
         // this.sortArray();
       });
-      this.subscriptions.add(ratingSub);    
+      this.subscriptions.add(ratingSub);
     }
   }
 

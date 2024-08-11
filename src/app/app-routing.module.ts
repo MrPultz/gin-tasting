@@ -22,6 +22,7 @@ const routes: Routes = [
     { path: 'top10', component: Top10Component},
     { path: 'list', component: ListComponent},
     { path: 'vote', component: VoteComponent},
+    { path: 'vote/:code', component: VoteComponent},
   ]},
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectLoggedInToHome}},
   { path: 'admin', component:NavbarComponent, canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogin}, children: [

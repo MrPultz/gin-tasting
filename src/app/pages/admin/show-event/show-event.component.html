@@ -51,7 +51,10 @@
               </tr>
             </tbody>
           </table>
-          <button (click)="finishEvent()" class="mt-auto mb-10 bg-yellow-600 block rounded-lg p-4 w-40 border-black border-1 hover:bg-yellow-800">Finish Event</button>
+          <div class="mt-auto">
+            <qrcode [qrdata]="QRCodeData" [width]="120" [errorCorrectionLevel]="'M'"></qrcode>
+            <button (click)="finishEvent()" class="mb-10 bg-yellow-600 block rounded-lg p-4 w-40 border-black border-1 hover:bg-yellow-800">Finish Event</button>
+          </div>
       </div>
     </div>
 </div>

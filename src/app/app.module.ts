@@ -28,6 +28,7 @@ import { ShowEventComponent } from './pages/admin/show-event/show-event.componen
 import { GinRenderBigComponent } from './components/gin-render-big/gin-render-big.component';
 import { GinEventCardComponent } from './components/gin-event-card/gin-event-card.component';
 import { SortArrowsComponent } from './components/sort-arrows/sort-arrows.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { SortArrowsComponent } from './components/sort-arrows/sort-arrows.compon
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    QRCodeModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnalytics(() => getAnalytics()),
     provideAuth(() => getAuth()),
