@@ -92,3 +92,8 @@
   .selected {
     border: 3px solid #2a8d2a;
   }
+
+
+tbody > tr:nth-child(even) {
+    background-color: hsl(0deg 0% 19%);
+}

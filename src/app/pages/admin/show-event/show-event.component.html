@@ -1,24 +1,41 @@
-<div class="flex w-auto ml-16 h-screen bg-gray-700 justify-center font-Roboto text-center">
-    <div *ngIf="event" class="text-white flex flex-col items-center w-10/12">
-        <div class="header mb-10 mt-10">
-            <span class="text-4xl">Event Code: {{event.code}}</span>
-        </div> 
-        <div class="carousel flex relative overflow-hidden justify-center items-center">
-            <div *ngFor="let item of event.gins let i = index" [ngClass]="{ 'active w-full': activeItemIndex === i }">
-              <app-gin-render-big [gin]="item"></app-gin-render-big>        
-            </div>
-          </div>
-          <div class="carousel-controls w-10/12 flex items-center justify-between mt-5 text-2xl">
-            <button (click)="previousItem()" class="bg-yellow-600 block rounded-lg p-4 w-40 border-black border-1 hover:bg-yellow-800">Previous</button>
-            <button (click)="nextItem()" class="bg-yellow-600 block rounded-lg p-4 w-40 border-black border-1 hover:bg-yellow-800">Next</button>
-          </div>
+<div *ngIf="event" class="grid text-white font-Roboto bg-gray-700">
+    <div class="header">
+      <span class="text-4xl">Event Code: {{event.code}}</span>
     </div>
-    <div class="flex flex-col w-2/12 border-l-4 border-black border-solid right-0 text-white items-center">
-        <div class="flex p-10 justify-center border-b-2 border-white border-dashed w-11/12">
+    <div class="main-content">
+      <div class="next-button" (click)="nextItem()">&#11166;</div>
+      <div class="prev-button" (click)="previousItem()">&#11164;</div>
+      <div class="carousel flex relative overflow-hidden justify-center items-center">
+        <div *ngFor="let item of event.gins let i = index" [ngClass]="{ 'active w-full': activeItemIndex === i }">
+          <app-gin-render-big [gin]="item"></app-gin-render-big>        
+          </div>
+        </div>
+    </div>
+    <div class="highest-vol text-2xl">
+      <h1>Highest Vol%</h1>
+      <ol class="list-decimal">
+        <li *ngFor="let gin of highestVol">{{gin.name}} - {{gin.vol}}%</li>
+      </ol>
+    </div>
+    <div class="best-PpL text-2xl">
+      <h1>Best Kr/L</h1>
+      <ol class="list-decimal">
+        <li *ngFor="let gin of bestPriceLiter">{{gin.name}} - {{gin.valuePerLiter}}</li>
+      </ol>
+    </div>
+    <div class="best-PpLP text-2xl">
+      <h1>Best Kr/L/Points</h1>
+      <ol class="list-decimal">
+        <li *ngFor="let gin of bestPriceLiterPoints">{{gin.name}} - {{gin.valueLiterPoint | number: '1.0-1'}}</li>
+      </ol>
+    </div>
+    <div class="list">
+      <div class="flex flex-col items-center">
+        <div class="flex p-10 justify-center w-11/12">
             <span class="text-4xl">Rank List</span>
         </div>
 
-        <table class="table-auto mt-8 w-full">
+        <table class="table-auto w-full">
             <thead class="border-b-2 border-white border-solid">
               <tr>
                 <th>Rank</th>
@@ -27,13 +44,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let gin of sortedGins; let i = index">
+              <tr *ngFor="let gin of sortedGins; let i = index" style="line-height: 1.8;">
                 <td>{{i + 1}}</td>
-                <td>{{gin.name}}</td>
-                <td>{{gin.avgPoints | number: '1.0-2'}}</td>
+                <td class="text-left">{{gin.name}}</td>
+                <td class="text-left">{{gin.avgPoints | number: '1.0-2'}}</td>
               </tr>
             </tbody>
           </table>
           <button (click)="finishEvent()" class="mt-auto mb-10 bg-yellow-600 block rounded-lg p-4 w-40 border-black border-1 hover:bg-yellow-800">Finish Event</button>
+      </div>
     </div>
 </div>

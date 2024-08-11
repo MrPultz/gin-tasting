@@ -1,3 +1,84 @@
+.grid {
+  grid-template-areas: 
+      "header header header list"
+      "carousel carousel carousel list"
+      "vol ppl pplp list";
+      margin-left: 66px;
+      height: 100svh;
+      grid-template-rows: auto 3fr 2fr;
+      grid-template-columns: 1.5fr 1.5fr 1.5fr 1fr;
+}
+
+.header {
+  grid-area: header;
+  /* background-color: red; */
+  padding: 20px 0;
+  justify-self: center;
+}
+
+.main-content {
+  /* background-color: blue; */
+  grid-area: carousel;
+  align-self: center;
+  position: relative;
+  width: 100%; 
+  display: flex; 
+  justify-content: center;
+}
+
+.highest-vol {
+  /* background-color: aqua; */
+  grid-area: vol;
+  /* padding: 0px 40px; */
+  justify-self: center;
+}
+
+.best-PpL {
+  /* background-color: magenta; */
+  grid-area: ppl;
+  justify-self: center;
+}
+
+.best-PpLP {
+  /* background-color: blueviolet; */
+  grid-area: pplp;
+  justify-self: center;
+}
+
+ol {
+  margin-top: 15px;
+  line-height: 1.8;
+  font-size: 1.2rem;
+}
+
+.list {
+  grid-area: list;
+}
+
+.list > div {
+  height: 100%;
+}
+
+.next-button, .prev-button {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  height: 90%;
+  width: 50px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.prev-button {
+  left: 72px;
+}
+
+.next-button {
+  right: 73px;
+}
+
 .carousel {
     position: relative;
     height: 500px;

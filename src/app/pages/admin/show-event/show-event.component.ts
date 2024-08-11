@@ -20,6 +20,9 @@ export class ShowEventComponent implements OnInit, OnDestroy {
   ratings: eventRating[] = [];
   activeItemIndex: number = 0;
   sortedGins: Gin[] = [];
+  highestVol: Gin[] = [];
+  bestPriceLiter: Gin[] = [];
+  bestPriceLiterPoints: Gin[] = [];
 
   constructor(private route: ActivatedRoute, private eventService: EventService, private ginService: GinService, private sort: SortService) { }
 
@@ -29,14 +32,20 @@ export class ShowEventComponent implements OnInit, OnDestroy {
       const eventSub = this.eventService.getEvent(id).subscribe(event => {
         this.event = event;
         this.sortedGins = event.gins.slice();
+        this.highestVol = Array.from(event.gins);
+        this.bestPriceLiter = Array.from(event.gins);
+        this.bestPriceLiterPoints = Array.from(event.gins);
+        this.sort.asc(this.highestVol, "vol", true);  
+        this.sort.asc(this.bestPriceLiter, "valuePerLiter", true);
       });
       this.subscriptions.add(eventSub);
       const ratingSub = this.eventService.getRatings(id).subscribe(ratings => {
         this.calculateRating(ratings);
         this.sort.asc(this.sortedGins, "avgPoints", true);
-        this.sortArray();
+        this.sort.asc(this.bestPriceLiterPoints, "valueLiterPoint", true);
+        // this.sortArray();
       });
-      this.subscriptions.add(ratingSub);
+      this.subscriptions.add(ratingSub);    
     }
   }
 
