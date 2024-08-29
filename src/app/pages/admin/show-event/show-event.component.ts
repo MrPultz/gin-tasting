@@ -38,13 +38,13 @@ export class ShowEventComponent implements OnInit, OnDestroy {
         this.bestPriceLiter = Array.from(event.gins);
         this.bestPriceLiterPoints = Array.from(event.gins);
         this.sort.asc(this.highestVol, "vol", true);  
-        this.sort.asc(this.bestPriceLiter, "valuePerLiter", true);
+        this.sort.desc(this.bestPriceLiter, "valuePerLiter", true);
       });
       this.subscriptions.add(eventSub);
       const ratingSub = this.eventService.getRatings(id).subscribe(ratings => {
         this.calculateRating(ratings);
         this.sort.asc(this.sortedGins, "avgPoints", true);
-        this.sort.asc(this.bestPriceLiterPoints, "valueLiterPoint", true);
+        this.sort.desc(this.bestPriceLiterPoints, "valueLiterPoint", true);
         // this.sortArray();
       });
       this.subscriptions.add(ratingSub);

@@ -24,7 +24,6 @@ export class GinEventCardComponent implements OnInit {
   ngOnInit(): void {
     if(this.gin != null) {
       const rating = localStorage.getItem(this.gin.name);
-      console.log(rating);
       if(rating) {
         this.rating = +rating;
         this.hasRated = true;

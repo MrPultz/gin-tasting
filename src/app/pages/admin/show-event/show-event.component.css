@@ -11,13 +11,11 @@
 
 .header {
   grid-area: header;
-  /* background-color: red; */
   padding: 20px 0;
   justify-self: center;
 }
 
 .main-content {
-  /* background-color: blue; */
   grid-area: carousel;
   align-self: center;
   position: relative;
@@ -27,20 +25,16 @@
 }
 
 .highest-vol {
-  /* background-color: aqua; */
   grid-area: vol;
-  /* padding: 0px 40px; */
   justify-self: center;
 }
 
 .best-PpL {
-  /* background-color: magenta; */
   grid-area: ppl;
   justify-self: center;
 }
 
 .best-PpLP {
-  /* background-color: blueviolet; */
   grid-area: pplp;
   justify-self: center;
 }

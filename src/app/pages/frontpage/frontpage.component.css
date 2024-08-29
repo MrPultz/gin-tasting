@@ -20,7 +20,7 @@
 }
 
 .box {
-    --height: 400px;
+    --height: 40svh;
     --_from: var(--gradient-from);
     --_to: var(--gradient-to);
     width: 100%;
@@ -54,3 +54,16 @@
     --gradient-to: #7c2d12;
     height: calc(var(--height) * 0.5);
 }
+
+@media only screen and (max-height: 700px) and (max-width: 700px) {
+    .podium {
+        width: 90%;
+    }
+  }
+
+@media only screen and (max-height: 1150px) and (min-width: 700px) {
+    .podium {
+        width: 50%;
+    }
+  }
+
